@@ -1,0 +1,302 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>花卉海报</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f4f4f4;
+        }
+
+       .poster {
+            max-width: 100%;
+            margin: 20px auto;
+            background-color: white;
+            padding: 20px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+
+       .header {
+            text-align: center;
+            margin-bottom: 20px;
+        }
+
+       .description {
+            text-align: center;
+            margin-bottom: 20px;
+            font-size: 16px;
+            line-height: 1.5;
+        }
+
+       .photo-wall {
+            width: 100%;
+            height: 600px;
+            margin: 0 auto 20px;
+            position: relative;
+            overflow: hidden;
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            grid-template-rows: repeat(3, 1fr);
+        }
+
+       .bg-photo {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+       .center-photo {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: calc(800px * 2 / 3);
+            height: calc(600px * 2 / 3);
+            object-fit: cover;
+            z-index: 1;
+            opacity: 0;
+            transition: opacity 0.5s ease;
+        }
+
+       .center-photo.active {
+            opacity: 1;
+        }
+
+       .arrow {
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            font-size: 30px;
+            color: white;
+            background-color: rgba(0, 0, 0, 0.5);
+            padding: 10px;
+            cursor: pointer;
+            z-index: 2;
+        }
+
+       .arrow.left {
+            left: 10px;
+        }
+
+       .arrow.right {
+            right: 10px;
+        }
+
+       .contact {
+            text-align: center;
+        }
+
+       .screenshot-button {
+            display: block;
+            margin: 20px auto;
+            padding: 10px 20px;
+            background-color: #007BFF;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+
+       .modal {
+            display: none;
+            position: fixed;
+            z-index: 3;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            overflow: auto;
+            background-color: rgba(0, 0, 0, 0.9);
+        }
+
+       .modal-content {
+            margin: auto;
+            display: block;
+            width: 80%;
+            max-width: 700px;
+            animation-name: zoom;
+            animation-duration: 0.6s;
+        }
+
+        @keyframes zoom {
+            from {
+                transform: scale(0)
+            }
+            to {
+                transform: scale(1)
+            }
+        }
+
+       .close {
+            position: absolute;
+            top: 15px;
+            right: 35px;
+            color: #f1f1f1;
+            font-size: 40px;
+            font-weight: bold;
+            transition: 0.3s;
+        }
+
+       .close:hover,
+       .close:focus {
+            color: #bbb;
+            text-decoration: none;
+            cursor: pointer;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="poster">
+        <div class="header">
+            <h1>吴家庄花卉盆景展示</h1>
+        </div>
+        <div class="description">
+            养花多年，家有各色盆景花卉数千株，每个季节都有不同花卉绽放花蕾，希望结缘更多的爱花之人，共同探讨庭院雅趣。
+        </div>
+        <div class="photo-wall">
+            <!-- 这里可以替换为后台提供的照片链接 -->
+            <img class="bg-photo"  src="https://pic1.imgdb.cn/item/67eab6f90ba3d5a1d7e86031.jpg" alt="花卉照片 1">
+			<img class="bg-photo"  src="https://pic1.imgdb.cn/item/67eab6ee0ba3d5a1d7e86029.jpg" alt="花卉照片 1">
+			<img class="bg-photo"  src="https://pic1.imgdb.cn/item/67eab6ee0ba3d5a1d7e86028.jpg" alt="花卉照片 1">
+			<img class="bg-photo"  src="https://pic1.imgdb.cn/item/67eab6ed0ba3d5a1d7e86027.jpg" alt="花卉照片 1">
+			<img class="bg-photo"  src="https://pic1.imgdb.cn/item/67eab6ed0ba3d5a1d7e86026.jpg" alt="花卉照片 1">
+			<img class="bg-photo"  src="https://pic1.imgdb.cn/item/67eab6ea0ba3d5a1d7e8601f.jpg" alt="花卉照片 1">
+			<img class="bg-photo"  src="https://pic1.imgdb.cn/item/67eab6c70ba3d5a1d7e85fff.jpg" alt="花卉照片 1">
+			<img class="bg-photo"  src="https://pic1.imgdb.cn/item/67eab6c30ba3d5a1d7e85ffe.jpg" alt="花卉照片 1">
+			<img class="bg-photo"  src="https://pic1.imgdb.cn/item/67eab6c30ba3d5a1d7e85ffd.jpg" alt="花卉照片 1">
+			<img class="bg-photo"  src="https://pic1.imgdb.cn/item/67eab6c30ba3d5a1d7e85ffb.jpg" alt="花卉照片 1">
+			<img class="bg-photo"  src="https://pic1.imgdb.cn/item/67eab6c20ba3d5a1d7e85ffa.jpg" alt="花卉照片 1">
+			<img class="bg-photo"  src="https://pic1.imgdb.cn/item/67eab6950ba3d5a1d7e85fd7.jpg" alt="花卉照片 1">
+			<img class="bg-photo"  src="https://pic1.imgdb.cn/item/67eab6950ba3d5a1d7e85fd5.jpg" alt="花卉照片 1">
+			<img class="bg-photo"  src="https://pic1.imgdb.cn/item/67eab6920ba3d5a1d7e85fd3.jpg" alt="花卉照片 1">
+			<img class="bg-photo"  src="https://pic1.imgdb.cn/item/67eab6920ba3d5a1d7e85fd2.jpg" alt="花卉照片 1">
+			<img class="bg-photo"  src="https://pic1.imgdb.cn/item/67eab6900ba3d5a1d7e85fd1.jpg" alt="花卉照片 1">
+			<img class="bg-photo"  src="https://pic1.imgdb.cn/item/67eab6050ba3d5a1d7e85f4c.jpg" alt="花卉照片 1">
+			<img class="bg-photo"  src="https://pic1.imgdb.cn/item/67eab5ff0ba3d5a1d7e85f48.jpg" alt="花卉照片 1">
+			<img class="bg-photo"  src="https://pic1.imgdb.cn/item/67eab6000ba3d5a1d7e85f4a.jpg" alt="花卉照片 1">
+			<img class="bg-photo"  src="https://pic1.imgdb.cn/item/67eab6000ba3d5a1d7e85f49.jpg" alt="花卉照片 1">
+			<img class="bg-photo"  src="https://pic1.imgdb.cn/item/67eab5ff0ba3d5a1d7e85f47.jpg" alt="花卉照片 1">
+			<img class="bg-photo"  src="https://pic1.imgdb.cn/item/67eab57f0ba3d5a1d7e85ec0.jpg" alt="花卉照片 1">
+			<img class="bg-photo"  src="https://pic1.imgdb.cn/item/67eab57d0ba3d5a1d7e85ebf.jpg" alt="花卉照片 1">
+			<img class="bg-photo"  src="https://pic1.imgdb.cn/item/67eab57d0ba3d5a1d7e85ebe.jpg" alt="花卉照片 1">
+			<img class="bg-photo"  src="https://pic1.imgdb.cn/item/67eab57d0ba3d5a1d7e85ebd.jpg" alt="花卉照片 1">
+			<img class="bg-photo"  src="https://pic1.imgdb.cn/item/67eab57a0ba3d5a1d7e85eb3.jpg" alt="花卉照片 1">
+			<img class="bg-photo"  src="https://pic1.imgdb.cn/item/67eab5780ba3d5a1d7e85eb1.jpg" alt="花卉照片 1">
+            <img class="center-photo"  src="https://pic1.imgdb.cn/item/67eab6f90ba3d5a1d7e86031.jpg" alt="花卉照片 1" onclick="openModal(this.src)">
+			<img class="center-photo"  src="https://pic1.imgdb.cn/item/67eab6ee0ba3d5a1d7e86029.jpg" alt="花卉照片 1" onclick="openModal(this.src)">
+			<img class="center-photo"  src="https://pic1.imgdb.cn/item/67eab6ee0ba3d5a1d7e86028.jpg" alt="花卉照片 1" onclick="openModal(this.src)">
+			<img class="center-photo"  src="https://pic1.imgdb.cn/item/67eab6ed0ba3d5a1d7e86027.jpg" alt="花卉照片 1" onclick="openModal(this.src)">
+			<img class="center-photo"  src="https://pic1.imgdb.cn/item/67eab6ed0ba3d5a1d7e86026.jpg" alt="花卉照片 1" onclick="openModal(this.src)">
+			<img class="center-photo"  src="https://pic1.imgdb.cn/item/67eab6ea0ba3d5a1d7e8601f.jpg" alt="花卉照片 1" onclick="openModal(this.src)">
+			<img class="center-photo"  src="https://pic1.imgdb.cn/item/67eab6c70ba3d5a1d7e85fff.jpg" alt="花卉照片 1" onclick="openModal(this.src)">
+			<img class="center-photo"  src="https://pic1.imgdb.cn/item/67eab6c30ba3d5a1d7e85ffe.jpg" alt="花卉照片 1" onclick="openModal(this.src)">
+			<img class="center-photo"  src="https://pic1.imgdb.cn/item/67eab6c30ba3d5a1d7e85ffd.jpg" alt="花卉照片 1" onclick="openModal(this.src)">
+			<img class="center-photo"  src="https://pic1.imgdb.cn/item/67eab6c30ba3d5a1d7e85ffb.jpg" alt="花卉照片 1" onclick="openModal(this.src)">
+			<img class="center-photo"  src="https://pic1.imgdb.cn/item/67eab6c20ba3d5a1d7e85ffa.jpg" alt="花卉照片 1" onclick="openModal(this.src)">
+			<img class="center-photo"  src="https://pic1.imgdb.cn/item/67eab6950ba3d5a1d7e85fd7.jpg" alt="花卉照片 1" onclick="openModal(this.src)">
+			<img class="center-photo"  src="https://pic1.imgdb.cn/item/67eab6950ba3d5a1d7e85fd5.jpg" alt="花卉照片 1" onclick="openModal(this.src)">
+			<img class="center-photo"  src="https://pic1.imgdb.cn/item/67eab6920ba3d5a1d7e85fd3.jpg" alt="花卉照片 1" onclick="openModal(this.src)">
+			<img class="center-photo"  src="https://pic1.imgdb.cn/item/67eab6920ba3d5a1d7e85fd2.jpg" alt="花卉照片 1" onclick="openModal(this.src)">
+			<img class="center-photo"  src="https://pic1.imgdb.cn/item/67eab6900ba3d5a1d7e85fd1.jpg" alt="花卉照片 1" onclick="openModal(this.src)">
+			<img class="center-photo"  src="https://pic1.imgdb.cn/item/67eab6050ba3d5a1d7e85f4c.jpg" alt="花卉照片 1" onclick="openModal(this.src)">
+			<img class="center-photo"  src="https://pic1.imgdb.cn/item/67eab5ff0ba3d5a1d7e85f48.jpg" alt="花卉照片 1" onclick="openModal(this.src)">
+			<img class="center-photo"  src="https://pic1.imgdb.cn/item/67eab6000ba3d5a1d7e85f4a.jpg" alt="花卉照片 1" onclick="openModal(this.src)">
+			<img class="center-photo"  src="https://pic1.imgdb.cn/item/67eab6000ba3d5a1d7e85f49.jpg" alt="花卉照片 1" onclick="openModal(this.src)">
+			<img class="center-photo"  src="https://pic1.imgdb.cn/item/67eab5ff0ba3d5a1d7e85f47.jpg" alt="花卉照片 1" onclick="openModal(this.src)">
+			<img class="center-photo"  src="https://pic1.imgdb.cn/item/67eab57f0ba3d5a1d7e85ec0.jpg" alt="花卉照片 1" onclick="openModal(this.src)">
+			<img class="center-photo"  src="https://pic1.imgdb.cn/item/67eab57d0ba3d5a1d7e85ebf.jpg" alt="花卉照片 1" onclick="openModal(this.src)">
+			<img class="center-photo"  src="https://pic1.imgdb.cn/item/67eab57d0ba3d5a1d7e85ebe.jpg" alt="花卉照片 1" onclick="openModal(this.src)">
+			<img class="center-photo"  src="https://pic1.imgdb.cn/item/67eab57d0ba3d5a1d7e85ebd.jpg" alt="花卉照片 1" onclick="openModal(this.src)">
+			<img class="center-photo"  src="https://pic1.imgdb.cn/item/67eab57a0ba3d5a1d7e85eb3.jpg" alt="花卉照片 1" onclick="openModal(this.src)">
+			<img class="center-photo"  src="https://pic1.imgdb.cn/item/67eab5780ba3d5a1d7e85eb1.jpg" alt="花卉照片 1" onclick="openModal(this.src)">
+            <!-- <img class="center-photo" src="https://dummyimage.com/533x400/000/fff" alt="花卉照片 2" onclick="openModal(this.src)">
+            <img class="center-photo" src="https://dummyimage.com/533x400/000/fff" alt="花卉照片 3" onclick="openModal(this.src)">
+            <img class="center-photo" src="https://dummyimage.com/533x400/000/fff" alt="花卉照片 4" onclick="openModal(this.src)">
+            <img class="center-photo" src="https://dummyimage.com/533x400/000/fff" alt="花卉照片 5" onclick="openModal(this.src)"> -->
+            <span class="arrow left" onclick="prevPhoto()">&#10094;</span>
+            <span class="arrow right" onclick="nextPhoto()">&#10095;</span>
+        </div>
+        <div class="contact">
+		    <p>姓名: 吴洪生</p>
+            <p>联系方式: 15954485031</p>
+            <p>地址: 安丘市大盛镇吴家庄村156号</p>
+        </div>
+        <button class="screenshot-button" onclick="takeScreenshot()">生成长截图</button>
+    </div>
+    <div id="myModal" class="modal">
+        <span class="close" onclick="closeModal()">&times;</span>
+        <img class="modal-content" id="modalImg">
+    </div>
+    <script src="https://html2canvas.hertzen.com/dist/html2canvas.min.js"></script>
+    <script>
+        let currentPhotoIndex = 0;
+        const centerPhotos = document.querySelectorAll('.center-photo');
+        const totalPhotos = centerPhotos.length;
+
+        function showPhoto(index) {
+            centerPhotos.forEach(photo => photo.classList.remove('active'));
+            centerPhotos[index].classList.add('active');
+        }
+
+        function nextPhoto() {
+            currentPhotoIndex = (currentPhotoIndex + 1) % totalPhotos;
+            showPhoto(currentPhotoIndex);
+        }
+
+        function prevPhoto() {
+            currentPhotoIndex = (currentPhotoIndex - 1 + totalPhotos) % totalPhotos;
+            showPhoto(currentPhotoIndex);
+        }
+
+        function takeScreenshot() {
+            const poster = document.querySelector('.poster');
+            html2canvas(poster).then(canvas => {
+                const link = document.createElement('a');
+                link.href = canvas.toDataURL('image/png');
+                link.download = 'flower_poster_screenshot.png';
+                link.click();
+            });
+        }
+
+        function openModal(imgSrc) {
+            const modal = document.getElementById('myModal');
+            const modalImg = document.getElementById('modalImg');
+            modal.style.display = "block";
+            modalImg.src = imgSrc;
+        }
+
+        function closeModal() {
+            const modal = document.getElementById('myModal');
+            modal.style.display = "none";
+        }
+
+        // 初始化显示第一张照片
+        showPhoto(currentPhotoIndex);
+
+        // 触摸滑动事件
+        let touchStartX = 0;
+        let touchEndX = 0;
+        const photoWall = document.querySelector('.photo-wall');
+
+        photoWall.addEventListener('touchstart', function (e) {
+            touchStartX = e.touches[0].clientX;
+        });
+
+        photoWall.addEventListener('touchend', function (e) {
+            touchEndX = e.changedTouches[0].clientX;
+            if (touchEndX > touchStartX + 50) {
+                prevPhoto();
+            } else if (touchEndX < touchStartX - 50) {
+                nextPhoto();
+            }
+        });
+    </script>
+</body>
+
+</html>    
